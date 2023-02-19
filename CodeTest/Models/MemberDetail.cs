@@ -5,6 +5,7 @@ namespace CodeTest.Models
 {
     public class MemberDetail
     {
+        [ConcurrencyCheck]
         [Key]
         public int Id { get; set; }
 

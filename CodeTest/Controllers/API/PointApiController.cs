@@ -5,6 +5,7 @@ using CodeTest.Models;
 using CodeTest.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace CodeTest.Controllers.API
 {
@@ -18,11 +19,14 @@ namespace CodeTest.Controllers.API
 
         private readonly IPointService _pointService;
 
-        public PointApiController(ILogger<POSApiController> logger, IMapper mapper, IPointService pointService)
+        private IDistributedCache _distributedCache;
+
+        public PointApiController(ILogger<POSApiController> logger, IMapper mapper, IPointService pointService, IDistributedCache distributedCache)
         {
             _logger = logger;
             _mapper = mapper;
             _pointService = pointService;
+            _distributedCache = distributedCache;
         }
 
         [Route("CalculatePoint")]
@@ -30,7 +34,9 @@ namespace CodeTest.Controllers.API
         public async Task<ActionResult> CalculatePoint([FromBody] PurchaseDTO purchaseDTO)
         {
             Purchase purchase = _mapper.Map<Purchase>(purchaseDTO);
-            return Ok(await _pointService.CalculatePoint(purchase));
+            var memberDetail = await _pointService.CalculatePoint(purchase);
+            _distributedCache.SetString("Member"+memberDetail.Id, memberDetail.TotalPoint+"");
+            return Ok(memberDetail);
         }
 
 

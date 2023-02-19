@@ -19,6 +19,8 @@ namespace CodeTest.DTO
 
         public string Phno { get; set; }
 
+        public DateTime Date { get; set; }
+
         public bool IsDeleted { get; set; }
     }
 }

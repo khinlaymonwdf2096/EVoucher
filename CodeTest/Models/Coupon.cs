@@ -4,9 +4,10 @@ namespace CodeTest.Models
 {
     public class Coupon
     {
+        [ConcurrencyCheck]
         [Key]
         public int Id { get; set; }
-
+        
         public Guid CouponCode { get; set; }
 
         public string CouponName { get; set; }

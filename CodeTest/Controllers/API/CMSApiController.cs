@@ -2,6 +2,8 @@
 using CodeTest.DTO;
 using CodeTest.IServices;
 using CodeTest.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +11,7 @@ namespace CodeTest.Controllers.API
 {
 
 
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class CMSApiController : ControllerBase
@@ -28,7 +31,7 @@ namespace CodeTest.Controllers.API
         }
 
         [Route("GetCoupons")]
-        [HttpPost]
+        [HttpGet]
         public async Task<ActionResult> GetCoupons([FromQuery] bool? showActive = null)
         {
            // Coupon coupon = _mapper.Map<Coupon>(couponDTO);
@@ -62,7 +65,7 @@ namespace CodeTest.Controllers.API
         }
 
         [Route("GetMemberList")]
-        [HttpPost]
+        [HttpGet]
         public async Task<ActionResult> GetMemberList()
         {
             // Coupon coupon = _mapper.Map<Coupon>(couponDTO);

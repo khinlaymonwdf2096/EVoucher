@@ -15,7 +15,15 @@ namespace CodeTest.Services
             _context = context;
         }
 
-
+        public async Task<List<Purchase>> GetAllPurchases()
+        {
+            var purchaseList = await _context.Purchases.AsNoTracking().ToListAsync();
+            foreach(var purchase in purchaseList)
+            {
+                purchase.ItemLists = _context.Items.AsNoTracking().Where(x => x.PurchaseId == purchase.Id).ToList();
+            }
+            return purchaseList;
+        }
 
         public async Task<MemberDetail> SaveMember(MemberDetail memberDetail)
         {
@@ -26,7 +34,7 @@ namespace CodeTest.Services
             }
             else
             {
-                memberDetail.Id = _context.Purchases.Max(x => x.Id) + 1;
+                memberDetail.Id = _context.MemberDetails.Max(x => x.Id) + 1;
             }
 
             await _context.MemberDetails.AddAsync(memberDetail);

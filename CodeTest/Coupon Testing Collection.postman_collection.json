@@ -1,0 +1,372 @@
+{
+	"info": {
+		"_postman_id": "9a41ad17-c3cd-4065-93b9-0478f382664f",
+		"name": "Coupon Testing Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCoupon Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY4MDMzMTAsImV4cCI6MTY3Njg4OTcxMCwiaWF0IjoxNjc2ODAzMzEwfQ.1hym5gb854lHa0v-l8D6GXMcOXOolDmxMMkuwhjKbV9B1H7hAjchC8mELPF5hTlTyH9VLffciKJe-b9gtTdabA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"couponCode\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"couponName\": \"Happy Hour Promo\",\r\n  \"startDate\": \"2023-02-19T10:45:23.155Z\",\r\n  \"endDate\": \"2023-02-28T10:45:23.155Z\",\r\n  \"image\": \"string\",\r\n  \"discountAmount\": 100,\r\n  \"availableQty\": 10,\r\n  \"isActive\": true,\r\n  \"isDeleted\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/api/CMSApi/CreateCoupon",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"api",
+						"CMSApi",
+						"CreateCoupon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY4MDMzMTAsImV4cCI6MTY3Njg4OTcxMCwiaWF0IjoxNjc2ODAzMzEwfQ.1hym5gb854lHa0v-l8D6GXMcOXOolDmxMMkuwhjKbV9B1H7hAjchC8mELPF5hTlTyH9VLffciKJe-b9gtTdabA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 5,\r\n  \"couponCode\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"couponName\": \"Happy Hour Promo\",\r\n  \"startDate\": \"2023-02-19T10:57:17.164Z\",\r\n  \"endDate\": \"2023-02-19T10:57:17.164Z\",\r\n  \"image\": \"string\",\r\n  \"discountAmount\": 100,\r\n  \"availableQty\": 20,\r\n  \"isActive\": true,\r\n  \"isDeleted\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/api/CMSApi/UpdateCoupon",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"api",
+						"CMSApi",
+						"UpdateCoupon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY4MDMzMTAsImV4cCI6MTY3Njg4OTcxMCwiaWF0IjoxNjc2ODAzMzEwfQ.1hym5gb854lHa0v-l8D6GXMcOXOolDmxMMkuwhjKbV9B1H7hAjchC8mELPF5hTlTyH9VLffciKJe-b9gtTdabA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/api/CMSApi/GetCoupons",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"api",
+						"CMSApi",
+						"GetCoupons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJhZG1pbkBnbWFpbC5jb20iLCJuYmYiOjE2NzY4MDMzMTAsImV4cCI6MTY3Njg4OTcxMCwiaWF0IjoxNjc2ODAzMzEwfQ.1hym5gb854lHa0v-l8D6GXMcOXOolDmxMMkuwhjKbV9B1H7hAjchC8mELPF5hTlTyH9VLffciKJe-b9gtTdabA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/api/CMSApi/GetMemberList",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"api",
+						"CMSApi",
+						"GetMemberList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"couponId\": 5,\r\n  \"memberId\": 1,\r\n  \"receiptNo\": 1,\r\n  \"itemLists\": [\r\n    {\r\n      \"id\": 8,\r\n      \"purchaseId\": 3,\r\n      \"isNonAlcohol\": true,\r\n      \"price\": 100,\r\n      \"qty\": 10,\r\n      \"amount\": 1000\r\n    }\r\n  ],\r\n  \"name\": \"string\",\r\n  \"phno\": \"string\",\r\n  \"date\": \"2023-02-19T11:00:44.066Z\",\r\n  \"isDeleted\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/api/POSApi/ScanQRCode",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"api",
+						"POSApi",
+						"ScanQRCode"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"couponId\": 5,\r\n  \"memberId\": 1,\r\n  \"receiptNo\": 2,\r\n  \"itemLists\": [\r\n    {\r\n      \"id\": 11,\r\n      \"purchaseId\": 3,\r\n      \"isNonAlcohol\": true,\r\n      \"price\": 100,\r\n      \"qty\": 10,\r\n      \"amount\": 1000\r\n    }\r\n  ],\r\n  \"name\": \"string\",\r\n  \"phno\": \"string\",\r\n  \"date\": \"2023-02-19T11:03:07.034Z\",\r\n  \"isDeleted\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/api/POSApi/CreatePurchase",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"api",
+						"POSApi",
+						"CreatePurchase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"name\": \"Myat\",\r\n  \"mobileNo\": \"09123321123\",\r\n  \"totalPoint\": 0,\r\n  \"totalPurchaseAmount\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/api/POSApi/CreateMember",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"api",
+						"POSApi",
+						"CreateMember"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/api/MobileApi/Register?MobileNo=09123456789&Otp=1234",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"api",
+						"MobileApi",
+						"Register"
+					],
+					"query": [
+						{
+							"key": "MobileNo",
+							"value": "09123456789"
+						},
+						{
+							"key": "Otp",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/api/MobileApi/GetPurchasesbyMemberId?memberId=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"api",
+						"MobileApi",
+						"GetPurchasesbyMemberId"
+					],
+					"query": [
+						{
+							"key": "memberId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7052/api/MobileApi/GetTotalPointbyMemberId?memberId=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"api",
+						"MobileApi",
+						"GetTotalPointbyMemberId"
+					],
+					"query": [
+						{
+							"key": "memberId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"couponId\": 5,\r\n  \"memberId\": 1,\r\n  \"receiptNo\": 3,\r\n  \"itemLists\": [\r\n    {\r\n      \"id\": 3,\r\n      \"isNonAlcohol\": true,\r\n      \"price\": 100,\r\n      \"qty\": 10,\r\n      \"amount\": 1000\r\n    },\r\n\t {\r\n      \"id\": 4,\r\n      \"isNonAlcohol\": true,\r\n      \"price\": 100,\r\n      \"qty\": 5,\r\n      \"amount\": 500\r\n    }\r\n  ],\r\n  \"name\": \"Aung\",\r\n  \"phno\": \"09123456789\",\r\n  \"isDeleted\": false\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7052/api/PointApi/CalculatePoint",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7052",
+					"path": [
+						"api",
+						"PointApi",
+						"CalculatePoint"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

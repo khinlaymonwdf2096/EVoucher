@@ -18,12 +18,12 @@ namespace CodeTest.Controllers.API
         }
 
         [HttpPost("login")]
-        public ActionResult Login(string username, string password)
+        public ActionResult Login(string email, string password)
         {
-            if (username != "admin" && password != "123")
+            if (email != "admin@gmail.com" && password != "123")
                 return Unauthorized("Invalid Credentials");
             else
-                return new JsonResult(new { userName = username, token = _tokenService.CreateToken(username) });
+                return new JsonResult(new { userName = email, token = _tokenService.CreateToken(email) });
         }
     }
 }

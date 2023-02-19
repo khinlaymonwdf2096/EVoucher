@@ -5,6 +5,7 @@ namespace CodeTest.Models
 {
     public class Purchase
     {
+        [ConcurrencyCheck]
         [Key]
         public int Id { get; set; }
 
@@ -20,14 +21,18 @@ namespace CodeTest.Models
 
         public string Phno { get; set; }
 
+        public DateTime Date { get; set; }
+
         public bool IsDeleted { get; set; }
     }
 
 
     public class Item
     {
-        [Key]
+       
         public int Id { get; set; }
+
+        public int PurchaseId { get; set; }
         public bool isNonAlcohol { get; set; }
 
         public decimal Price { get; set; }

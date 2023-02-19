@@ -6,6 +6,8 @@ namespace CodeTest.DTO
     {
         [Key]
         public int Id { get; set; }
+
+        public int PurchaseId { get; set; }
         public bool isNonAlcohol { get; set; }
 
         public decimal Price { get; set; }

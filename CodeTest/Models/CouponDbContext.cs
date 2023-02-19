@@ -20,13 +20,15 @@ namespace CodeTest.Models
         {
             modelBuilder.HasDefaultSchema("public");
             base.OnModelCreating(modelBuilder);
-
+            modelBuilder.Entity<Coupon>()
+            .Property(a => a.Id).IsConcurrencyToken();
             modelBuilder.Entity<Coupon>().ToTable("Coupons");
-
+            modelBuilder.Entity<Purchase>()
+            .Property(a => a.Id).IsConcurrencyToken();
             modelBuilder.Entity<Purchase>().ToTable("Purchases");
-
+            modelBuilder.Entity<MemberDetail>()
+            .Property(a => a.Id).IsConcurrencyToken();
             modelBuilder.Entity<MemberDetail>().ToTable("Member");
-
             modelBuilder.Entity<Item>().ToTable("Items");
 
         }

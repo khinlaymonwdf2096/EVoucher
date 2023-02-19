@@ -12,8 +12,6 @@ namespace CodeTest.IServices
 
 
         public Task<MemberDetail> SaveMember(MemberDetail memberDetail);
-
-
-      
+        public Task<List<Purchase>> GetAllPurchases();
     }
 }

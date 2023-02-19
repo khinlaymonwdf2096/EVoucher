@@ -21,10 +21,9 @@ namespace CodeTest.Services
         public async Task<MemberDetail> CalculatePoint(Purchase purchase)
         {
             
-            Purchase result = await _context.Purchases.AsNoTracking().FirstOrDefaultAsync(x => x.MemberId == purchase.MemberId);
-            
-
-            var item = await _context.Items.AsNoTracking().ToArrayAsync();
+           Purchase result = await _context.Purchases.AsNoTracking().FirstOrDefaultAsync(x => x.MemberId == purchase.MemberId);
+                     
+           var item = purchase.ItemLists.Where(x => x.isNonAlcohol).ToList();
 
             decimal totalAmount =(decimal) item.Where(x=>x.isNonAlcohol).Sum(x => x.Amount);
             int mempoint = 10;

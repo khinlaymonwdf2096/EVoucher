@@ -32,99 +32,60 @@ namespace CodeTest.Controllers.API
             _distributedCache = distributedCache;
         }
 
+        [Route("GetPurchases")]
+        [HttpGet]
+        public async Task<IEnumerable<PurchaseDTO>> Get()
+        {
+
+            List<Purchase> PurchaseList = await _posService.GetAllPurchases();
+            List<PurchaseDTO> PurchaseDtoList = new List<PurchaseDTO>();
+            PurchaseList.ForEach(x => PurchaseDtoList.Add(_mapper.Map<PurchaseDTO>(x)));
+
+            return PurchaseDtoList;
+        }
 
 
-        //public POSApiController(ILogger<POSApiController> logger, IMapper mapper, IPOSService posService, ICMSService cmsService)
-        //{
-        //    _logger = logger;
-        //    _mapper = mapper;
-        //    _posService = posService;
-        //    _cmsService = cmsService;
-        //}
 
-
-
-        //[Route("GetCoupons")]
-        //[HttpPost]
-        //public async Task<ActionResult> ScanQRCode([FromQuery] bool? showActive = null)
-        //{
-        //    // Coupon coupon = _mapper.Map<Coupon>(couponDTO);
-        //   // return Ok(await _posService.GetAllEVouchers(showActive));
-        //}
-
-        //[Route("ScanQRCode")]
-        //[HttpGet]
-        //public async Task<IActionResult> ScanQRCode([FromQuery] int memberId, int couponId)
-        //{
-
-        //    var coupon = await _cmsService.GetEVoucherById(couponId);
-
-        //    DateTime currentDateTime = DateTime.Now;
-
-        //    string key = coupon.Id + "";
-
-        //    if (currentDateTime >= coupon.StartDate && currentDateTime <= coupon.EndDate)
-        //    {
-
-        //        string aq = _distributedCache.GetString(key);
-        //        if (aq != null)
-        //        {
-
-        //            int qty = int.Parse(aq);
-        //            if (qty > 0)
-        //            {
-        //                _distributedCache.SetString(key, qty -1 + "");
-        //            }
-        //            else
-        //            {
-        //                return BadRequest("Reach Voucher Limit!");
-        //            }
-
-        //        }
-        //        else
-        //        {
-        //            _distributedCache.SetString(key, coupon.AvailableQty - 1 + "");
-        //        }
-        //    }
-
-        //    return Ok(_distributedCache.GetString(key));
-        //}
+       
 
         [Route("ScanQRCode")]
         [HttpPost]
         public async Task<IActionResult> ScanQRCode([FromBody]PurchaseDTO purchaseDTO)
         {
             Purchase purchase = _mapper.Map<Purchase>(purchaseDTO);
-
-            var coupon = await _cmsService.GetEVoucherById(purchase.CouponId);
-
-            DateTime currentDateTime = DateTime.Now;
-
-            string key = coupon.Id + "";
-
-            if (currentDateTime >= coupon.StartDate && currentDateTime <= coupon.EndDate)
+            if (purchase.CouponId != 0)
             {
+                var coupon = await _cmsService.GetEVoucherById(purchase.CouponId);
 
-                string aq = _distributedCache.GetString(key);
-                if (aq != null)
+                DateTime currentDateTime = DateTime.Now;
+
+                string key = "Coupon" + coupon.Id;
+
+                if (currentDateTime >= coupon.StartDate && currentDateTime <= coupon.EndDate)
                 {
 
-                    int qty = int.Parse(aq);
-                    if (qty > 0)
+                    string getqtyvalue = _distributedCache.GetString(key);
+                    if (getqtyvalue != null)
                     {
-                        _distributedCache.SetString(key, qty - 1 + "");
+
+                        int qty = int.Parse(getqtyvalue);
+                        if (qty > 0)
+                        {
+                            _distributedCache.SetString(key, qty - 1 + "");
+                        }
+                        else
+                        {
+                            return BadRequest("Reach Voucher Limit!");
+                        }
+
                     }
                     else
                     {
-                        return BadRequest("Reach Voucher Limit!");
+                        _distributedCache.SetString(key, coupon.AvailableQty - 1 + "");
                     }
-
-                }
-                else
-                {
-                    _distributedCache.SetString(key, coupon.AvailableQty - 1 + "");
                 }
             }
+            
 
             return Ok(await _posService.SavePurchase(purchase));
         }
